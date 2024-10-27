@@ -1,7 +1,7 @@
 # Taiwan Real Estate Investing Income Calculator
 
 ## About
-In Taiwan, people consider investing in real estate a save, stable way to accumulate wealth, because of inelastic demand for housing in the cities. However, people are often overwhelmed by the calculation of taxes, loan payment, and opportunity cost of investing and holding properties. Accordingly, I create this calculator to help investors estimate and calculate their investing income on real estate.
+In Taiwan, people consider investing in real estate a safe, stable way to accumulate wealth, because of the inelastic demand for housing in the cities. However, people are often overwhelmed by the calculation of taxes, loan payment, and opportunity cost of investing and holding properties. Accordingly, I create this calculator to help investors estimate and calculate their investing income on real estate.
 
 ## Inputs
 **Purchased price:** the original purchased price of the property.  

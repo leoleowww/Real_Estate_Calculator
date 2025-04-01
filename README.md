@@ -18,8 +18,8 @@ In Taiwan, people consider investing in real estate a safe, stable way to accumu
 
 **Interest rate:** the annual interest rate on the loan.
 
-![screenshot](/Users/yenchengwu/Git/zGit_file/calculator_blank.png)
-![screenshot](/Users/yenchengwu/Git/zGit_file/calculator_example.png)
+![screenshot](/Real_Estate_Calculator/calculator_blank.png)
+![screenshot](/Real_Estate_Calculator/calculator_example.png)
 
 
 ## Explanaion on Taiwan Real Property Transfer Tax

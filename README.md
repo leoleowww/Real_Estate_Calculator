@@ -18,6 +18,10 @@ In Taiwan, people consider investing in real estate a safe, stable way to accumu
 
 **Interest rate:** the annual interest rate on the loan.
 
+![screenshot](/Users/yenchengwu/Git/zGit_file/calculator_blank.png)
+![screenshot](/Users/yenchengwu/Git/zGit_file/calculator_example.png)
+
+
 ## Explanaion on Taiwan Real Property Transfer Tax
 The real property transfer tax depends on the holding peroid of the property.  
 
@@ -26,3 +30,6 @@ If holding period is:
 - Over 2 yrs and less than 5 yrs --> **tax rate = 35%**
 - Over 5 yrs and less than 10 yrs --> **tax rate = 20%**
 - Over 10 yrs --> **tax rate = 10%**
+
+## Future Updates
+1. Provide more customized calculation. (e.g. Investors may repay more principal other than monthly loan payment; therefore, customised amortization table should be provided.)

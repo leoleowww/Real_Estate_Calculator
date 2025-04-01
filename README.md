@@ -22,7 +22,7 @@ In Taiwan, people consider investing in real estate a safe, stable way to accumu
 ![screenshot](/calculator_example.png)
 
 
-## Explanaion on Taiwan Real Property Transfer Tax
+## Explanation on Taiwan Real Property Transfer Tax
 The real property transfer tax depends on the holding peroid of the property.  
 
 If holding period is:

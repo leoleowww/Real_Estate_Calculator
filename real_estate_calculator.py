@@ -65,22 +65,22 @@ class Calculator(tk.Frame):
 
         # Get number of installments left
         def on_entry_click_loan_period(event):
-            if self.loan_period.get() == "Enter the number of installments left on your loan":
+            if self.loan_period.get() == "Enter the number of installments on the loan":
                 self.loan_period.delete(0, "end")
                 self.loan_period.config(fg='black')
         def on_focus_out_loan_period(event):
             if self.loan_period.get() == "":
-                self.loan_period.insert(0, "Enter the number of installments left on your loan")
+                self.loan_period.insert(0, "Enter the number of installments on the loan")
                 self.loan_period.config(fg='grey')
 
         # Get interest rate
         def on_entry_click_int_rate(event):
-            if self.int_rate.get() == "Enter yearly interest rate (in percentage %)":
+            if self.int_rate.get() == "Enter annual interest rate (in percentage %)":
                 self.int_rate.delete(0, "end")
                 self.int_rate.config(fg='black')
         def on_focus_out_int_rate(event):
             if self.int_rate.get() == "":
-                self.int_rate.insert(0, "Enter yearly interest rate (in percentage %)")
+                self.int_rate.insert(0, "Enter annual interest rate (in percentage %)")
                 self.int_rate.config(fg='grey')
 
 
@@ -115,13 +115,13 @@ class Calculator(tk.Frame):
         self.out_prin.bind("<FocusOut>", on_focus_out_out_prin)
 
         self.loan_period = tk.Entry (self, width = 50, font = f1)
-        self.loan_period.insert(0, 'Enter the number of installments left on your loan')
+        self.loan_period.insert(0, 'Enter the number of installments on the loan')
         self.loan_period.config(fg='grey')
         self.loan_period.bind("<FocusIn>", on_entry_click_loan_period)
         self.loan_period.bind("<FocusOut>", on_focus_out_loan_period)
 
         self.int_rate = tk.Entry (self, width = 50, font = f1)
-        self.int_rate.insert(0, 'Enter yearly interest rate (in percentage %)')
+        self.int_rate.insert(0, 'Enter annual interest rate (in percentage %)')
         self.int_rate.config(fg='grey')
         self.int_rate.bind("<FocusIn>", on_entry_click_int_rate)
         self.int_rate.bind("<FocusOut>", on_focus_out_int_rate)
@@ -175,37 +175,51 @@ class Calculator(tk.Frame):
         PMT = out_prin * ((int_rate_monthly) / (1 - (1 / (1 + int_rate_monthly) ** loan_period)))
         interest_premium = 0
 
-        # Set tax rate
-        if sell_of_month < 24 :
+        # Initialize Remaining Principal
+        remaining_principal = out_prin
+        interest_premium = 0
+
+        # Determine tax rate based on holding period
+        if sell_of_month < 24:
             tax_rate = 0.45
-        elif sell_of_month >= 24 and sell_of_month < 60 :
+        elif 24 <= sell_of_month < 60:
             tax_rate = 0.35
-        elif sell_of_month >= 60 and sell_of_month < 120 :
+        elif 60 <= sell_of_month < 120:
             tax_rate = 0.20
         else:
             tax_rate = 0.10
-        
-        for x in range(0, sell_of_month + 1):
-            if x >= 0 and x < 1 :
-                monthly_int_premium = 0
-            elif x >= 1 and x < 2 :
-                monthly_int_premium = out_prin * int_rate_monthly
-            else :
-                monthly_int_premium = PMT * (1 / (int_rate_monthly)) * (1 - (1 / (1 + int_rate_monthly) ** (loan_period - (x - 1)))) * int_rate_monthly
 
-            interest_premium += monthly_int_premium
-            monthly_expense_total = mcl_exp * sell_of_month
+        # Calculate total interest paid over the holding period
+        for x in range(sell_of_month + 1):  
+            if x == 0:  
+                # If sold in the first month, assume no interest premium 
+                monthly_int_premium = 0  
+            else:
+                # Interest portion of the monthly payment
+                monthly_int_premium = remaining_principal * int_rate_monthly
+                
+                # Add to total interest paid
+                interest_premium += monthly_int_premium
+                
+                # Reduce the remaining balance by the principal part of the payment
+                principal_payment = PMT - monthly_int_premium
+                remaining_principal -= principal_payment
 
-            tax_expense = (selling_price - purchasing_price) * tax_rate
-            total_cost = purchasing_price + monthly_expense_total + interest_premium + tax_expense
-            net_erng = selling_price - total_cost
-            net_ern_ROI = (selling_price / total_cost) - 1 
-            net_erng = '{:,.2f}'.format(net_erng)
-            net_ern_ROI = "{:.2%}".format(net_ern_ROI)
-        
-        
-        self.erng.config(text = 'Net Earning = ' + net_erng, fg = "black")
-        self.ern_ROI.config(text = 'ROI = ' + net_ern_ROI)
+        # Calculate expenses
+        monthly_expense_total = mcl_exp * sell_of_month
+        tax_expense = (selling_price - purchasing_price) * tax_rate 
+        total_cost = purchasing_price + monthly_expense_total + interest_premium + tax_expense
+
+        # Final net earnings and ROI
+        net_erng = selling_price - total_cost
+        net_ern_ROI = (selling_price / total_cost) - 1
+
+        # Format output
+        net_erng = '{:,.2f}'.format(net_erng)
+        net_ern_ROI = "{:.2%}".format(net_ern_ROI)
+
+        self.erng.config(text='Net Earning = ' + net_erng, fg="black")
+        self.ern_ROI.config(text='ROI = ' + net_ern_ROI)
        
         
 

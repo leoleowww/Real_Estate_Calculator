@@ -14,9 +14,9 @@ In Taiwan, people consider investing in real estate a safe, stable way to accumu
 
 **Outstanding principal:** the outstanding principal on the loan.  
 
-**The number of installments left:** the number of installments left when the property is sold (or when the loan is repaid).  
+**The number of installments:** the number of installments on the loan.  
 
-**Interest rate:** the yearly interest rate on the loan.
+**Interest rate:** the annual interest rate on the loan.
 
 ## Explanaion on Taiwan Real Property Transfer Tax
 The real property transfer tax depends on the holding peroid of the property.  
